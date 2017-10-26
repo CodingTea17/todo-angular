@@ -9,23 +9,28 @@ import { Component } from '@angular/core';
     <div class="row">
       <ul class="list-group">
         <li
-        [class]="priorityColor(currentTask)"
-        (click)="isDone(currentTask)"
-        *ngFor="let currentTask of tasks">{{currentTask.description}}   <button class="btn btn-light" (click)="editTask(currentTask)">Edit!</button></li>
+          *ngFor="let currentTask of tasks"
+          [class]="priorityColor(currentTask)"
+          (click)="isDone(currentTask)">
+          {{currentTask.description}}
+          <button class="btn btn-light" (click)="editTask(currentTask)">Edit!</button>
+        </li>
       </ul>
       <hr>
       <div *ngIf="selectedTask">
         <h3>{{selectedTask.description}}</h3>
         <p>Task Complete? {{selectedTask.done}}</p>
         <h3>Edit Task</h3>
-        <label>Enter Task Description:</label>
-        <input [(ngModel)]="selectedTask.description">
+        <div class="form-group">
+          <label>Enter Task Description:</label>
+          <input class="form-control" [(ngModel)]="selectedTask.description">
+        </div>
         <label>Enter Task Priority (1-3):</label>
         <br>
-        <input type="radio" [(ngModel)]="selectedTask.Priority" [value]="1">1 (Low Priority)<br>
-        <input type="radio" [(ngModel)]="selectedTask.Priority" [value]="2">2 (Medium Priority)<br>
-        <input type="radio" [(ngModel)]="selectedTask.Priority" [value]="3">3 (High Priority)
-        <button (click)="finishedEditing()">Done</button>
+        <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (Low Priority)<br>
+        <input type="radio" [(ngModel)]="selectedTask.priority" [value]="2">2 (Medium Priority)<br>
+        <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (High Priority)<br><br>
+        <button class="btn btn-success" (click)="finishedEditing()">Done</button>
       </div>
     </div>
   </div>
@@ -56,11 +61,11 @@ export class AppComponent {
   }
 
   isDone(clickedTask: Task) {
-    if(clickedTask.done === true) {
-      alert("This task is done!");
-    } else {
-      alert("This task is not done. Get back to work!");
-    }
+    // if(clickedTask.done === true) {
+    //   alert("This task is done!");
+    // } else {
+    //   alert("This task is not done. Get back to work!");
+    // }
   }
 
   priorityColor(currentTask) {
